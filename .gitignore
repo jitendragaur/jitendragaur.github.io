@@ -1,3 +1,27 @@
 .idea/
+<<<<<<< HEAD
 .idea
 .idea/*
+=======
+node_modules/
+
+.idea/.name
+
+gulpfile.js
+
+package.json
+
+.idea/.name
+
+.idea/.name
+
+.idea/misc.xml
+
+.idea/modules.xml
+
+.idea/ngMadLibs.iml
+
+.idea/vcs.xml
+>>>>>>> 2915654f994e12c9bbbf833cd6a8e38463a55664
+
+*.js
