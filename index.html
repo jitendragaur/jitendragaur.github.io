@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Instragram Search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body ng-controller="MainController as vm">
+<div class="contentIndex">
+    <div class="front-paper">
+        <div class="container">
+            <h1>InstaGram</h1>
+
+            <p>Search photos</p>
+
+            <form ng-submit="vm.searchForm.$valid && vm.search()" novalidate="novalidate" name="vm.searchForm">
+                <div class="input-append">
+                    <input type="text" ng-model="vm.data.q" name="search"
+                           ng-class="{'has-error':vm.searchForm.search.$error.required &&
+            vm.searchForm.$submitted}" class="span6 input-custom" required
+                            placeholder="Search tag like cat, dog"/>
+                    <button type="submit" class=" btn btn-custom">Search</button>
+                </div>
+            </form>
+            <span class="error" ng-if="vm.searchForm.search.$error.required &&
+            vm.searchForm.$submitted">Please enter some tag like "cat"</span>
+            <a ng-if="vm.notify">{{vm.notify}}</a>
+        </div>
+    </div>
+    <div class="bara-ads">
+        <div class="container">
+        </div>
+    </div>
+    <div class="result">
+        <div class="container">
+            <div class="row">
+                <div ng-repeat="result in vm.results track by $index" ng-if="!vm.loading">
+                    <div class="clearfix" ng-if="$index % 4 == 0"></div>
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <a target="_blank" href="{{result.images.standard_resolution.url}}">
+                                <img ng-src="{{vm.trustSrc(result.images.low_resolution.url)}}" style="width:300px"alt=""/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-animate.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
