@@ -7,11 +7,15 @@ angular.module('app', ['ngAnimate'])
         var vm = this;
         vm.results = [];
         vm.loading = false;
+        vm.searchLimit =  20;
+
+
+        callInstaAPI('Cat', 4);
 
         vm.search = function () {
             vm.loading = true;
             vm.notify = 'Searching Instagram for photos tagged with "' + vm.data.q + '"';
-            callInstaAPI(vm.data.q);
+            callInstaAPI(vm.data.q, 20);
             resetForm();
         };
 
@@ -25,7 +29,8 @@ angular.module('app', ['ngAnimate'])
             vm.searchForm.$setPristine();
         }
 
-        function callInstaAPI(tag) {
+        function callInstaAPI(tag, limit) {
+            vm.searchLimit = limit;
             var request = {
                 client_id: '7b45f25eec0f4e74bf6c0721bd018a69',
                 callback: 'JSON_CALLBACK'
@@ -38,7 +43,7 @@ angular.module('app', ['ngAnimate'])
                 vm.loading = false;
                 //console.dir(vm.results);
             }, function (error) {
-                vm.notify = 'Sorry there is some error while searching tag "' + tag + '"';
+                vm.notify = 'Sorry there is some error while searching the tag "' + tag + '"';
                 vm.loading = false;
                 console.dir(error);
             });

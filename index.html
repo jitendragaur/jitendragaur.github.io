@@ -38,11 +38,11 @@
     <div class="result">
         <div class="container">
             <div class="row">
-                <div ng-repeat="result in vm.results track by $index" ng-if="!vm.loading">
+                <div ng-repeat="result in vm.results | limitTo:vm.searchLimit track by $index" ng-if="!vm.loading">
                     <div class="clearfix" ng-if="$index % 4 == 0"></div>
                     <div class="col-md-3">
                         <div class="thumbnail">
-                            <a target="_blank" href="{{result.images.standard_resolution.url}}">
+                            <a target="_blank" href="{{result.link}}">
                                 <img ng-src="{{vm.trustSrc(result.images.low_resolution.url)}}" style="width:300px"alt=""/>
                             </a>
                         </div>
